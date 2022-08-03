@@ -1,0 +1,240 @@
+// ************
+// Colors
+// ***********
+$yellow: #f6b801;
+$gold: #f79a00;
+$brown: #884c36;
+$red: #df0f16;
+$black: #010101;
+$white: #f2f2f9;
+$blackish: #161724;
+$gray: #686a6c;
+$transparent: rgba(255, 255, 255, 0);
+$skin: #efac8f;
+// *********************
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    // font-family: 'Dancing Script', cursive;
+    font-family: lato;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    background: $white;
+}
+
+// *****************
+// Mixin
+// *************
+@mixin basics($w, $h, $bg) {
+    width: $w;
+    height: $h;
+    background: $bg;
+}
+
+@mixin position($top, $left) {
+    position: absolute;
+    left: $left;
+    top: $top;
+}
+
+@mixin center-left($top) {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: $top;
+}
+
+@mixin scar {
+    width: .2rem;
+    height: 1.5rem;
+    background: $gold;
+    z-index: 4;
+    border: solid rgba(128, 128, 128, 0.599) .1px;
+}
+
+// **************************
+.head {
+    @include basics( 9rem, 9rem, $skin);
+    border-radius: 50%;
+    @include position(2rem, 20rem);
+    border-top: solid .1rem $gray;
+    &::after {
+        content: "";
+        display: block;
+        @include basics( 9rem, 9rem, $skin);
+        @include position(2.5rem, 0);
+        z-index: 2;
+        transform: rotate(179deg);
+        border-radius: 52% 48% 23% 20% / 76% 78% 17% 15%;
+        border-top: solid .1rem $gray;
+    }
+    .glasses {
+        @include basics(9rem, 4rem, $transparent);
+        // border: solid red 2px;
+        // @include center-left(6.9rem);
+        @include position(4rem, .4rem);
+        z-index: 4;
+        .left-glasses {
+            @include basics(3.5rem, 3.5rem, $transparent);
+            border: solid $black 2px;
+            border-radius: 50%;
+            // @include position(0,0rem );
+        }
+        .right-glasses {
+            @extend .left-glasses;
+            @include position(0, 4.8rem);
+        }
+        .glasses-line {
+            width: 1.6rem;
+            height: 1.2rem;
+            background: $transparent;
+            border-radius: 40%;
+            box-shadow: 0 .28rem .01rem .01rem black;
+            // transform: rotate(90deg);
+            @include position(.5rem, 3.35rem);
+        }
+    }
+    .left-eye {
+        @include basics(1rem, 1rem, $black);
+        border-radius: 50%;
+        z-index: 4;
+        @include position(5.3rem, 1.7rem);
+    }
+    .right-eye {
+        @extend .left-eye;
+        @include position(5.3rem, 6.3rem);
+    }
+    .scar {
+        @include scar;
+        transform: rotate(60deg);
+        @include position(1.8rem, 3rem);
+        &::after {
+            content: "";
+            display: block;
+            @include scar;
+            transform: rotate(-29deg) translate(-5.29rem, -.1rem);
+            @include position(-2.5rem, 5rem);
+        }
+        &::before {
+            content: "";
+            display: block;
+            @include scar;
+            transform: rotate(0deg) translate(-4.3rem, 2.17rem);
+            @include position(-2.2rem, 5rem);
+        }
+    }
+    .mouth {
+        @include basics(2rem, .7rem, $transparent);
+        border-radius: 50%;
+        @include center-left(8.5rem);
+        z-index: 4;
+        box-shadow: 0 .2rem .01rem .05rem $black;
+    }
+    .hair {
+        @include basics(9.5rem, 9rem, $transparent);
+        border-radius: 50%;
+        @include position(1rem, -.2rem);
+        z-index: 4;
+        box-shadow: 0 1.5rem .01rem .05rem $black;
+        transform: scaleY(-1);
+        &::before {
+            content: '';
+            display: block;
+            @include basics(1rem, 1rem, $transparent);
+            border-radius: 50%;
+            z-index: 4;
+            box-shadow: 0 .4rem .01rem .05rem $black;
+            @include position(9rem, 1.2rem);
+            transform: rotate(-50deg);
+        }
+        &::after {
+            content: '';
+            display: block;
+            @include basics(1rem, 1rem, $transparent);
+            border-radius: 50%;
+            z-index: 4;
+            box-shadow: 0 .4rem .01rem .05rem $black;
+            @include position(10rem, 2.7rem);
+            transform: rotate(120deg);
+        }
+        span {
+            &:nth-child(1) {
+                @include basics(3.5rem, 2rem, $transparent);
+                border-radius: 50%;
+                z-index: 6;
+                box-shadow: 0 .8rem .01rem .05rem $black, .9em .6rem .01rem .04rem $black;
+                @include position(5rem, -.6rem);
+                transform: rotate(70deg);
+            }
+            &:nth-child(2) {
+                @include basics(3.5rem, 2rem, $transparent);
+                border-radius: 50%;
+                z-index: 6;
+                box-shadow: 0 .73rem .01rem .05rem $black, .5rem 1rem .01rem .05rem $black;
+                @include position(6.8rem, 6.5rem);
+                transform: rotate(115deg);
+            }
+            &:nth-child(3) {
+                @include basics(5rem, 3rem, $transparent);
+                border-radius: 50%;
+                z-index: 6;
+                box-shadow: 0 .7rem .01rem .05rem $black, .8rem 1rem .01rem .05rem $black;
+                @include position(7.2rem, 4.3rem);
+                transform: rotate(140deg);
+            }
+            &:nth-child(4) {
+                @include basics(2.7rem, 2rem, $transparent);
+                border-radius: 50%;
+                z-index: 6;
+                box-shadow: 0 .8rem .01rem .05rem $black;
+                @include position(7rem, -.7rem);
+                transform: rotate(-105deg);
+            }
+            &:nth-child(5) {
+                @include basics(3.5rem, 2rem, $transparent);
+                border-radius: 50%;
+                z-index: 6;
+                box-shadow: 0 .8rem .01rem .05rem $black, .6em .6rem .01rem .04rem $black;
+                @include position(5.3rem, 6rem);
+                transform: rotate(110deg) scaleY(-1);
+            }
+        }
+    }
+    .tie{
+        // overflow: hidde;
+        clip-path: polygon(35% 11%, 49% 11%, 53% 59%, 45% 75%, 35% 62%);
+        @include basics(12rem,14rem ,#6d141b );
+        @include position(11rem,-.5rem );
+        position: relative;
+        span {
+            &:nth-child(1) {
+                @include basics(.8rem, 5rem , #e2b747);
+                position: absolute;
+                transform: rotate(40deg);
+                @include position(.2rem,4.8rem )
+            }
+            &:nth-child(2) {
+                @include basics(.8rem, 5rem , #e2b747);
+                position: absolute;
+                transform: rotate(40deg);
+                @include position(3rem,4.8rem )
+            }
+            &:nth-child(3) {
+                @include basics(.8rem, 5rem , #e2b747);
+                position: absolute;
+                transform: rotate(40deg);
+                @include position(5.5rem,4.8rem )
+            }
+        }
+
+    }
+}
+
